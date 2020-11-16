@@ -7,13 +7,33 @@ public class Army {
     Node first;
 
     public static void delMonster(Army pArmy, Monster pMonsterToDelete) {
+        // Si l'armée n'a pas de node, il n'y a rien a faire
         if (pArmy.first != null) {
-            /*Node cur = pArmy.first;
+            // Si le monstre à supprimer est le premier dans la liste
+            if (pArmy.first.monster == pMonsterToDelete) {
+                // On affecte la référence au premier node à celui suivant le premier
+                pArmy.first = pArmy.first.next;
+            } else {
+                // Sinon on parcours les autres nodes
+                // Le premier devant le précédent
+                Node pred = pArmy.first;
+                // Le courant devient le suivant
+                Node current = pred.next;
 
-            if (cur.monster == pMonsterToDelete) {
-                pArmy.first = cur.next;
-            }*/
-
+                // Tant que le courant n'est pas nul, on boucle
+                while (current != null) {
+                    // Si le monstre stocké dans le courant est la référence du monstre à supprimer
+                    if (current.monster == pMonsterToDelete) {
+                        // On affecte le node suivant du node précédent au node suivant le node courant
+                        pred.next = current.next;
+                    }
+                    // Puis pour continuer notre boucle,
+                    // Le précédent devient le courant
+                    pred = current;
+                    // Le courant devient le suivant
+                    current = current.next;
+                }
+            }
         }
     }
 
